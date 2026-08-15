@@ -1,0 +1,19 @@
+# .NET
+bin/
+obj/
+*.user
+
+# Angular / Node
+node_modules/
+dist/
+.angular/
+
+# Arquivos locais (anexos salvos em disco)
+RagTest.Api/Storage/
+
+# IDE
+.vs/
+.vscode/
+
+# Claude
+.claude/

@@ -1,0 +1,18 @@
+<div class="login-container">
+  <form class="login-card" (ngSubmit)="submit()">
+    <h1>RagTest</h1>
+    <p class="subtitle">Entrar</p>
+
+    <label for="username">Usuário</label>
+    <input id="username" name="username" type="text" [(ngModel)]="username" required autocomplete="username" />
+
+    <label for="password">Senha</label>
+    <input id="password" name="password" type="password" [(ngModel)]="password" required autocomplete="current-password" />
+
+    @if (errorMessage()) {
+      <p class="error">{{ errorMessage() }}</p>
+    }
+
+    <button type="submit">Entrar</button>
+  </form>
+</div>

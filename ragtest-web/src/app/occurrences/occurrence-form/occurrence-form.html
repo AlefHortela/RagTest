@@ -1,0 +1,40 @@
+<div class="page">
+  <h1>Nova ocorrência</h1>
+
+  <form (ngSubmit)="submit()">
+    <div class="form-fields">
+      <label for="type">Tipo</label>
+      <select id="type" name="type" [(ngModel)]="type" required>
+        <option value="Acidente">Acidente</option>
+        <option value="Assalto">Assalto</option>
+        <option value="Outro">Outro</option>
+      </select>
+
+      <label for="title">Título</label>
+      <input id="title" name="title" type="text" [(ngModel)]="title" required />
+
+      <label for="description">Descrição</label>
+      <textarea id="description" name="description" rows="4" [(ngModel)]="description" required></textarea>
+
+      <label for="occurredAt">Data/hora</label>
+      <input id="occurredAt" name="occurredAt" type="datetime-local" [(ngModel)]="occurredAt" required />
+
+      <label for="address">Endereço (opcional)</label>
+      <input id="address" name="address" type="text" [(ngModel)]="address" />
+
+      @if (errorMessage()) {
+        <p class="error">{{ errorMessage() }}</p>
+      }
+
+      <button type="submit" [disabled]="submitting()">Salvar</button>
+    </div>
+
+    <div class="map-section">
+      <label>Local no mapa (clique para marcar)</label>
+      <app-map-picker (positionChange)="onPositionChange($event)" />
+      @if (latitude != null && longitude != null) {
+        <p class="coords">Lat: {{ latitude }}, Lng: {{ longitude }}</p>
+      }
+    </div>
+  </form>
+</div>

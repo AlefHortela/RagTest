@@ -1,0 +1,35 @@
+@if (occurrence(); as o) {
+  <div class="page">
+    <a routerLink="/occurrences">&larr; Voltar</a>
+    <h1>{{ o.title }}</h1>
+    <p class="meta">{{ o.type }} — {{ o.occurredAt | date: 'dd/MM/yyyy HH:mm' }}</p>
+
+    <p>{{ o.description }}</p>
+
+    @if (o.address) {
+      <p><strong>Endereço:</strong> {{ o.address }}</p>
+    }
+    @if (o.latitude != null && o.longitude != null) {
+      <p><strong>Coordenadas:</strong> {{ o.latitude }}, {{ o.longitude }}</p>
+    }
+
+    <h2>Anexos</h2>
+    @if (o.attachments.length === 0) {
+      <p>Nenhum anexo.</p>
+    } @else {
+      <ul>
+        @for (attachment of o.attachments; track attachment.id) {
+          <li>{{ attachment.fileName }} ({{ attachment.contentType }})</li>
+        }
+      </ul>
+    }
+
+    <input type="file" (change)="onFileSelected($event)" accept=".txt,.pdf" [disabled]="uploading()" />
+    @if (uploading()) {
+      <p>Enviando...</p>
+    }
+    @if (uploadError()) {
+      <p class="error">{{ uploadError() }}</p>
+    }
+  </div>
+}

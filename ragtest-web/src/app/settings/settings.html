@@ -1,0 +1,32 @@
+<div class="page">
+  <h1>Configurações</h1>
+
+  @if (loading()) {
+    <p>Carregando...</p>
+  } @else {
+    <form (ngSubmit)="submit()">
+      <label for="attachmentsPath">Pasta de upload dos anexos</label>
+      <input
+        id="attachmentsPath"
+        name="attachmentsPath"
+        type="text"
+        [(ngModel)]="attachmentsPath"
+        placeholder="Ex: C:\RagTest\Anexos"
+        required
+      />
+      <p class="hint">
+        Caminho no disco onde os arquivos anexados às ocorrências serão salvos. Precisa ser acessível pelo
+        processo do backend.
+      </p>
+
+      @if (saved()) {
+        <p class="success">Configuração salva.</p>
+      }
+      @if (errorMessage()) {
+        <p class="error">{{ errorMessage() }}</p>
+      }
+
+      <button type="submit" [disabled]="saving()">Salvar</button>
+    </form>
+  }
+</div>

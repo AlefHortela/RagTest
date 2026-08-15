@@ -1,0 +1,11 @@
+@if (authService.isAuthenticated()) {
+  <nav class="navbar">
+    <div class="brand">RagTest</div>
+    <a routerLink="/occurrences">Ocorrências</a>
+    <a routerLink="/chat">Chat</a>
+    <a routerLink="/settings">Configurações</a>
+    <button (click)="logout()">Sair</button>
+  </nav>
+}
+
+<router-outlet />
